@@ -4,24 +4,6 @@ Um aplicativo em **Ruby** que consome a **API pública do Studio Ghibli**, armaz
 
 ---
 
-## 📋 Índice
-- [Descrição do Projeto](#-descrição-do-projeto)
-- [Funcionalidades](#-funcionalidades)
-- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Pré-requisitos](#-pré-requisitos)
-- [Instalação e Configuração](#-instalação-e-configuração)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [API Consumida](#-api-consumida)
-- [Banco de Dados](#-banco-de-dados)
-- [Como Usar](#-como-usar)
-- [Exemplos de Uso](#-exemplos-de-uso)
-- [Troubleshooting](#-troubleshooting)
-- [Contribuindo](#-contribuindo)
-- [Licença](#-licença)
-- [Autoria](#-autoria)
-
----
-
 ## 🎯 Descrição do Projeto
 Este projeto foi desenvolvido para fins educacionais, com os seguintes objetivos:
 - Consumir a API pública do Studio Ghibli e coletar informações sobre os filmes
@@ -42,8 +24,7 @@ Este projeto foi desenvolvido para fins educacionais, com os seguintes objetivos
 ## 🛠 Tecnologias Utilizadas
 - **Ruby** (>= 2.7)  
 - **PostgreSQL** (>= 12)  
-- **Gems**: `pg`, `sequel`, `httparty`, `json`  
-
+- **Gems**: `pg`, `sequel`, `httparty`, 
 ---
 
 ## 📋 Pré-requisitos
@@ -61,19 +42,20 @@ Este projeto foi desenvolvido para fins educacionais, com os seguintes objetivos
    ```bash
    git clone https://github.com/seu-usuario/ghibli-films-database.git
    cd ghibli-films-database
+   ```
 2. Instale as dependências:
+ ```bash
+ bundle install
+ ```
 
-bundle install
-
-
-##  3. Crie o banco de dados no PostgreSQL:
-
-CREATE DATABASE ghibli_films;
-
+3. Crie o banco de dados no PostgreSQL:
+```bash
+  CREATE DATABASE ghibli_films;
+ ```
 
 4. Crie a tabela:
-
-\c ghibli_films;
+```bash
+- \c ghibli_films;
 
 CREATE TABLE films (
     id SERIAL PRIMARY KEY,
@@ -89,14 +71,10 @@ CREATE TABLE films (
     rt_score INTEGER,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE INDEX idx_films_title ON films(title);
-CREATE INDEX idx_films_director ON films(director);
-CREATE INDEX idx_films_release_year ON films(release_year);
-
+```
 
 5. Configure as credenciais no arquivo services/database_service.rb:
-
+```
 DB_CONFIG = {
   host: 'localhost',
   port: 5432,
@@ -104,8 +82,11 @@ DB_CONFIG = {
   user: 'seu_usuario',
   password: 'sua_senha'
 }.freeze
+```
+---
 
-📁 Estrutura do Projeto
+## 📁 Estrutura do Projeto
+ ```bash
 ghibli-films-database/
 ├── README.md
 ├── Gemfile
@@ -115,73 +96,78 @@ ghibli-films-database/
 └── services/
     ├── database_service.rb
     └── ghibli_api_service.rb
+```
+---
 
-🌐 API Utilizada
+## 🌐 API Utilizada
 
-Base URL: https://ghibliapi.vercel.app/films
+- Base URL: https://ghibliapi.vercel.app/films
 
-Autenticação: Não requerida
+- Autenticação: Não requerida
 
-Dados: Títulos, diretores, produtores, anos, duração, descrição e notas
+- Dados: Títulos, diretores, produtores, anos, duração, descrição e notas dos filmes do Studio Ghibli
+---
 
-🎮 Como Usar
+## 🎮 Como Usar
 
 Execute o programa principal:
+ ```bash
+ ruby main.rb
+```
 
-ruby main.rb
+## Menu exibido:
 
+----MENU PRINCIPAL----
+1.  Importar filmes da API
+2.  Listar todos os filmes
+3.  Buscar por título
+4.  Buscar por diretor
+5.  Buscar por ano
+6.  Top 5 melhores avaliações
+7.  Estatísticas
+0.  Sair
 
-Menu exibido:
+## 💡 Exemplos de Uso 
 
-📋 MENU PRINCIPAL
-1. 📥 Importar filmes da API
-2. 📋 Listar todos os filmes
-3. 🔍 Buscar por título
-4. 👨‍💼 Buscar por diretor
-5. 📅 Buscar por ano
-6. ⭐ Top 5 melhores avaliações
-7. 📊 Estatísticas
-0. ❌ Sair
-
-💡 Exemplos de Uso
-Importação inicial
-📥 Importando 22 filmes...
-✅ NOVO: Castle in the Sky
-✅ NOVO: Grave of the Fireflies
+- Importação inicial: 
+ Importando 22 filmes... 
 ...
-🎉 Importação concluída!
+ Importação concluída!
+ 
 
-Estatísticas
-📊 ESTATÍSTICAS GERAIS
-📈 Total de filmes: 22
-⭐ Média de avaliação: 87.3%
-🆕 Ano mais recente: 2020
-🕰️ Ano mais antigo: 1986
+- Estatísticas: 
+ ESTATÍSTICAS GERAIS/
+ Total de filmes: 22/
+ Média de avaliação: 87.3%/
+ Ano mais recente: 2020/
+ Ano mais antigo: 1986
+---
 
-🔧 Troubleshooting
+## 🔧 Troubleshooting
 
-❌ Erro de conexão ao banco → verifique credenciais e se o PostgreSQL está rodando
+- Erro de conexão ao banco → verifique credenciais e se o PostgreSQL está rodando
 
-❌ Permissão negada → garanta que o usuário tem privilégios de criação
+- Permissão negada → garanta que o usuário tem privilégios de criação
+ 
+- API fora do ar → teste sua conexão com internet
+ 
+---
 
-❌ API fora do ar → teste sua conexão com internet
+## 🤝 Contribuindo
 
-🤝 Contribuindo
+- Faça um fork do projeto
 
-Faça um fork do projeto
+- Crie uma branch (git checkout -b feature/minha-feature)
 
-Crie uma branch (git checkout -b feature/minha-feature)
+- Commit suas alterações (git commit -m "feat: minha feature")
 
-Commit suas alterações (git commit -m "feat: minha feature")
+- Push (git push origin feature/minha-feature)
 
-Push (git push origin feature/minha-feature)
+- Abra um Pull Request
+---
 
-Abra um Pull Request
+## Projeto educacional utilizando dados da API pública do Studio Ghibli.
 
-📄 Licença
-
-Distribuído sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
-Projeto educacional utilizando dados da API pública do Studio Ghibli.
 
 ✍️ Autoria
 
