@@ -1,0 +1,26 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bigdecimal (3.2.3)
+    csv (3.3.5)
+    httparty (0.23.1)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
+    mini_mime (1.1.5)
+    multi_xml (0.7.2)
+      bigdecimal (~> 3.1)
+    pg (1.6.2-x64-mingw-ucrt)
+    sequel (5.96.0)
+      bigdecimal
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  httparty
+  pg
+  sequel
+
+BUNDLED WITH
+   2.7.2
